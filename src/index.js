@@ -7,17 +7,13 @@ import todoApp from './reducers';
 import App from './components/App';
 import { loadState, saveState } from './localStorage';
 
-const persistedState = {
-  todos: [{
-    id: '0',
-    text: 'Welcome back!',
-    completed: false,
-  }],
-};
+const persistedState = loadState();
 const store = createStore(todoApp, persistedState);
 
 store.subscribe(() => {
-  saveState(store.getState());
+  saveState({
+    todos: store.getState().todos
+  });
 })
 
 render(
