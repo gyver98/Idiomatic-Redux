@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import todoApp from './reducers';
 import App from './components/App';
+import { loadState, saveState } from './localStorage';
 
 const persistedState = {
   todos: [{
@@ -14,6 +15,10 @@ const persistedState = {
   }],
 };
 const store = createStore(todoApp, persistedState);
+
+store.subscribe(() => {
+  saveState(store.getState());
+})
 
 render(
   <Provider store={store}>
