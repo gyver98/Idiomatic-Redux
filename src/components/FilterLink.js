@@ -1,16 +1,21 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 
 const FilterLink = ({ filter, children }) => (
-  <Link 
-    to={filter === 'all' ? '' : filter} 
-    activeStyle={{ 
+  <Link
+    to={filter === 'all' ? '' : filter}
+    activeStyle={{
       textDecoration: 'none',
-      color: 'black'
+      color: 'black',
     }}
   >
     {children}
-  </Link>  
+  </Link>
 );
+
+FilterLink.propTypes = {
+  filter: PropTypes.oneOf(['all', 'completed', 'active']).isRequired,
+  children: PropTypes.node.isRequired,
+};
 
 export default FilterLink;
