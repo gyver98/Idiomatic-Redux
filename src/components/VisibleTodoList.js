@@ -18,7 +18,7 @@ const getVisibleTodos = (todos, filter) => {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    todos: getVisibleTodos(state.todos, ownProps.filter),
+    todos: getVisibleTodos(state.todos, ownProps.params.filter),
   };
 };
 
@@ -30,9 +30,9 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-const VisibleTodoList = connect(
+const VisibleTodoList = withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(TodoList);
+)(TodoList));
 
 export default VisibleTodoList;
