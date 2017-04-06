@@ -16,9 +16,12 @@ const getVisibleTodos = (todos, filter) => {
   }
 };
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state, { params }) => {
   return {
-    todos: getVisibleTodos(state.todos, ownProps.params.filter),
+    todos: getVisibleTodos(
+      state.todos, 
+      params.filter || 'all'
+    ),
   };
 };
 
