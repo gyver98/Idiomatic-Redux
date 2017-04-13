@@ -1,25 +1,24 @@
 import { combineReducers } from 'redux';
 import todo from './todo';
 
-
 const byId = (state = {}, action) => {
   switch (action.type) {
     case 'ADD_TODO':
     case 'TOGGLE_TODO':
-      return {}
+      return {
         ...state,
         [action.id]: todo(state[action.id], action),
-      };    
+      };
     default:
       return state;
   }
 };
 
-const allIds = (state = [], action) {
+const allIds = (state = [], action) => {
   switch (action.type) {
     case 'ADD_TODO':
       return [...state, action.id];
-    default
+    default:
       return state;
   }
 };
@@ -31,11 +30,11 @@ const todos = combineReducers({
 
 export default todos;
 
-const getAllTodos = (state) => 
+const getAllTodos = (state) =>
   state.allIds.map(id => state.byId[id]);
 
 export const getVisibleTodos = (state, filter) => {
-  const allTodos = getAllTodos(state)l
+  const allTodos = getAllTodos(state);
   switch (filter) {
     case 'all':
       return allTodos;
