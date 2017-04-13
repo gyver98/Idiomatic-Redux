@@ -41,6 +41,11 @@ const allIds = (state = [], action) {
   }
 };
 
+const todos = combineReducers({
+  byId,
+  allIds,
+});
+
 export default todos;
 
 export const getVisibleTodos = (state, filter) => {
