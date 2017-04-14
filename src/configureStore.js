@@ -27,7 +27,7 @@ const configureStore = () => {
   );
 
   if (process.env.NODE_ENV !== 'production') {
-    store.dispatch = addLoggingToDispatch(state);
+    store.dispatch = addLoggingToDispatch(store);
   }
 
   store.subscribe(throttle(() => {
