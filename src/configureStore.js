@@ -5,6 +5,9 @@ import { loadState, saveState } from './localStorage';
 
 const addLoggingToDispatch = (store) => {
   const rawDispatch = store.dispatch;
+  if (!console.group) {
+    return rawDispatch;
+  }
   return (action) => {
     console.group(action.type);
     console.log('%c prev state', 'color: gray', store.getState());
@@ -23,7 +26,9 @@ const configureStore = () => {
     persistedState
   );
 
-  store.dispatch = addLoggingToDispatch(state);
+  if (process.env.NODE_ENV !== 'production') {
+    store.dispatch = addLoggingToDispatch(state);
+  }
 
   store.subscribe(throttle(() => {
     saveState({
