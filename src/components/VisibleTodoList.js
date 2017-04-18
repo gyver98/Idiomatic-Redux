@@ -7,14 +7,23 @@ import TodoList from './TodoList';
 import { fetchTodos } from '../api';
 
 class VisibleTodoList extends Component {
+  componentDidMount() {
+    fetchTodos(this.props.filter).then(todos => 
+      console.log(this.props.filter, todos)
+    );
+  }
   render() {
     return <TodoList {...this.props} />;
   }
 }
 
-const mapStateToProps = (state, { params }) => ({
-  todos: getVisibleTodos(state, params.filter || 'all'),
-});
+const mapStateToProps = (state, { params }) => {
+  const filter = params.filter || 'all';
+  return {
+    todos: getVisibleTodos(state, filter),
+    filter
+  }
+};
 
 VisibleTodoList = withRouter(connect(
   mapStateToProps,
