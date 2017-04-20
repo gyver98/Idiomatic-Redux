@@ -18,7 +18,7 @@ const addLoggingToDispatch = (store) => {
 }
 
 const configureStore = () => {
-  const persistedState = loadState();
+ 
   const store = createStore(
     todoApp
   );
