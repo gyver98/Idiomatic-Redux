@@ -18,6 +18,7 @@ class VisibleTodoList extends Component {
   }
 
   fetchData() {
+    const { filter, receiveTodos } = this.props;
     fetchTodos(this.props.filter).then(todos => 
       this.props.receiveTodos(todos)
     );  
