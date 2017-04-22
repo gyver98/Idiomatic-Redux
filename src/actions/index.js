@@ -1,7 +1,8 @@
 import { v4 } from 'node-uuid';
 
-export const receiveTodos = (response) => ({
+export const receiveTodos = (filter, response) => ({
     type: 'RECEIVE_TODOS',
+    filter,
     respose,
 });
 
